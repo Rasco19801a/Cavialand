@@ -1,131 +1,251 @@
-# 🐹 Cavia Avonturen Wereld
+# 🐹 Cavia Adventure Game
 
-Een interactief webspel waar je met je eigen cavia verschillende werelden kunt verkennen!
+A modern, interactive web-based adventure game where players can customize and control a guinea pig (cavia) exploring various themed worlds.
 
-## 🎮 Functies
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org)
+[![npm Version](https://img.shields.io/badge/npm-%3E%3D6.0.0-brightgreen)](https://www.npmjs.com)
 
-- **8 Verschillende Werelden**: Verken de stad, natuur, strand, winter wonderland, woestijn, jungle, zwembad en dierenstad
-- **Interactieve Gebouwen**: Bezoek hotels, cafés, winkels, kapper, supermarkt en ziekenhuis
-- **Aanpasbare Cavia**: Ontwerp je eigen cavia met verschillende kleuren voor lichaam, oren, buik, voeten en neus
-- **Meerdere Besturingsopties**: Gebruik muis/touch om te klikken waar je naartoe wilt, of gebruik de pijltjestoetsen/WASD
-- **Responsive Design**: Werkt op desktop, tablet en mobiel
+## 📋 Table of Contents
 
-## 🚀 Installatie & Start
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Testing](#testing)
+- [Building for Production](#building-for-production)
+- [Architecture](#architecture)
+- [Contributing](#contributing)
+- [License](#license)
 
-1. Zorg dat Node.js is geïnstalleerd op je systeem
-2. Clone of download dit project
-3. Navigeer naar de projectmap:
-   ```bash
-   cd cavia-adventure-app
-   ```
-4. Installeer de dependencies:
-   ```bash
-   npm install
-   ```
-5. Start de server:
-   ```bash
-   npm start
-   ```
-6. Open je browser en ga naar: http://localhost:3000
+## ✨ Features
 
-## 🎯 Hoe te Spelen
+- **Character Customization**: Design your guinea pig with various colors for different body parts
+- **Multiple Worlds**: Explore 8 unique themed environments (City, Nature, Beach, Winter, Desert, Jungle, Swimming Pool, Animal City)
+- **Interactive Buildings**: Enter and explore buildings in city environments
+- **Responsive Controls**: Support for mouse, touch, and keyboard controls
+- **Performance Optimized**: FPS limiting and efficient rendering
+- **Error Handling**: Comprehensive error boundaries and logging
+- **Modular Architecture**: Clean separation of concerns with modern JavaScript patterns
 
-### Besturing
-- **Muis/Touch**: Klik of tik waar je naartoe wilt lopen
-- **Toetsenbord**: Gebruik de pijltjestoetsen of WASD om te bewegen
-- **Gebouwen**: Klik op gebouwen in de stad of dierenstad om naar binnen te gaan
-- **Uitgang**: Klik op de uitgang onderaan het scherm om een gebouw te verlaten
+## 🛠 Technology Stack
 
-### Werelden
-1. **🏙️ Stad**: Verken de stad met verschillende gebouwen
-2. **🌲 Natuur**: Wandel door het bos en ontdek de natuur
-3. **🏖️ Strand**: Geniet van zon, zee en strand
-4. **⛷️ Winter**: Speel in de sneeuw en bezoek de iglo
-5. **🏜️ Woestijn**: Ontdek de piramide in de woestijn
-6. **🌴 Jungle**: Verken de tropische jungle
-7. **🏊 Zwembad**: Neem een duik in verschillende baden
-8. **🏪 Dierenstad**: Bezoek speciale winkels voor dieren
+- **Frontend Framework**: Vanilla JavaScript (ES6+)
+- **Build Tool**: Webpack 5
+- **Code Quality**: ESLint (Airbnb config) + Prettier
+- **Testing**: Jest
+- **CSS**: Modern CSS3 with animations
+- **Graphics**: HTML5 Canvas API
+- **Server**: Express.js
+- **Package Manager**: npm
 
-### Cavia Aanpassen
-- Gebruik het kleurenpaneel rechts om je cavia aan te passen
-- Kies kleuren voor: lichaam, oren, buik, voeten en neus
-- Klik op "💾 Opslaan" om je ontwerp op te slaan
+## 📁 Project Structure
 
-## 🏗️ Technische Details
-
-### Project Structuur
 ```
 cavia-adventure-app/
+├── src/
+│   ├── index.js              # Main entry point
+│   ├── index.html            # HTML template
+│   ├── App.js                # Application controller
+│   ├── config/
+│   │   └── constants.js      # Game configuration
+│   ├── game/
+│   │   ├── GameEngine.js     # Core game engine
+│   │   ├── Player.js         # Player entity
+│   │   ├── WorldManager.js   # World rendering
+│   │   └── ...
+│   ├── components/
+│   │   ├── UIManager.js      # UI components
+│   │   └── CustomizationScreen.js
+│   ├── services/
+│   │   ├── Logger.js         # Logging service
+│   │   ├── EventBus.js       # Event management
+│   │   └── AssetLoader.js    # Asset management
+│   ├── utils/
+│   │   └── ErrorBoundary.js  # Error handling
+│   └── styles/
+│       └── main.css          # Main stylesheet
+├── tests/
+│   ├── setup.js              # Jest setup
+│   └── services/
+│       └── Logger.test.js    # Example test
 ├── public/
-│   ├── index.html
-│   ├── styles/
-│   │   └── main.css
-│   └── js/
-│       └── game/
-│           ├── Game.js
-│           ├── Player.js
-│           ├── WorldManager.js
-│           ├── UIManager.js
-│           ├── InputManager.js
-│           └── Renderer.js
-├── server.js
-├── package.json
-└── README.md
+│   └── dist/                 # Build output
+├── webpack.config.js         # Webpack configuration
+├── .eslintrc.js             # ESLint configuration
+├── .prettierrc              # Prettier configuration
+├── jest.config.js           # Jest configuration
+├── .babelrc                 # Babel configuration
+└── package.json
 ```
 
-### Gebruikte Technologieën
-- **Frontend**: Vanilla JavaScript met ES6 modules
-- **Graphics**: HTML5 Canvas API
-- **Styling**: CSS3 met animaties en responsive design
-- **Backend**: Express.js voor het serveren van de statische bestanden
-- **Storage**: LocalStorage voor het opslaan van cavia kleuren
+## 🚀 Getting Started
 
-## 🎨 Features in Detail
+### Prerequisites
 
-### Modulaire Architectuur
-- **Game.js**: Hoofdgame loop en coördinatie
-- **Player.js**: Speler beweging en eigenschappen
-- **WorldManager.js**: Wereld rendering en gebouw data
-- **UIManager.js**: UI interacties en updates
-- **InputManager.js**: Verwerking van gebruikersinput
-- **Renderer.js**: Alle teken operaties
+- Node.js >= 14.0.0
+- npm >= 6.0.0
 
-### Animaties
-- Vloeiende camera beweging die de speler volgt
-- Bounce effect bij het lopen
-- UI panel slide-in animaties
-- Kleur verandering feedback
+### Installation
 
-### Responsive Design
-- Automatische canvas grootte aanpassing
-- Touch support voor mobiele apparaten
-- UI panels passen zich aan voor kleine schermen
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/cavia-adventure-app.git
+cd cavia-adventure-app
+```
 
-## 🐛 Troubleshooting
+2. Install dependencies:
+```bash
+npm install
+```
 
-### Server start niet
-- Controleer of Node.js correct is geïnstalleerd: `node --version`
-- Zorg dat je in de juiste map bent: `cd cavia-adventure-app`
-- Probeer de dependencies opnieuw te installeren: `rm -rf node_modules && npm install`
+3. Start the development server:
+```bash
+npm run dev
+```
 
-### Spel laadt niet
-- Controleer de browser console voor errors (F12)
-- Zorg dat JavaScript is ingeschakeld in je browser
-- Probeer een andere browser (Chrome, Firefox, Safari)
+The game will open automatically at `http://localhost:3000`
 
-### Performance problemen
-- Sluit andere zware applicaties
-- Probeer een kleinere browser window
-- Update je browser naar de laatste versie
+## 💻 Development
 
-## 📝 Licentie
+### Available Scripts
 
-Dit project is gemaakt voor educatieve doeleinden. Voel je vrij om het te gebruiken en aan te passen!
+```bash
+# Start development server with hot reload
+npm run dev
 
-## 🤝 Bijdragen
+# Run production server
+npm start
 
-Suggesties en verbeteringen zijn welkom! Voel je vrij om issues te openen of pull requests te maken.
+# Build for production
+npm run build
+
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Lint code
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+
+# Format code with Prettier
+npm run format
+
+# Analyze bundle size
+npm run analyze
+```
+
+### Code Style
+
+This project follows the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) with some modifications. Code is automatically formatted using Prettier.
+
+### Debugging
+
+In development mode, the game instance is available at `window.__CAVIA_APP__` for debugging purposes.
+
+## 🧪 Testing
+
+Tests are written using Jest. Run the test suite with:
+
+```bash
+npm test
+```
+
+For test coverage:
+
+```bash
+npm test -- --coverage
+```
+
+### Writing Tests
+
+Place test files adjacent to the code they test or in the `tests/` directory. Test files should be named `*.test.js`.
+
+Example:
+```javascript
+import Logger from '../src/services/Logger';
+
+describe('Logger', () => {
+  test('should log messages', () => {
+    Logger.info('Test message');
+    expect(Logger.getLogs()).toHaveLength(1);
+  });
+});
+```
+
+## 📦 Building for Production
+
+Build the optimized production bundle:
+
+```bash
+npm run build
+```
+
+This will:
+- Minify JavaScript and CSS
+- Optimize assets
+- Generate source maps
+- Create hashed filenames for cache busting
+- Output to `public/dist/`
+
+## 🏗 Architecture
+
+### Design Patterns
+
+- **Singleton Pattern**: Services (Logger, EventBus, ErrorBoundary)
+- **Observer Pattern**: EventBus for decoupled communication
+- **Module Pattern**: ES6 modules for code organization
+- **Factory Pattern**: Asset creation in AssetLoader
+
+### State Management
+
+The application uses an event-driven architecture with the EventBus service for state management and component communication.
+
+### Error Handling
+
+Comprehensive error handling with:
+- Global error boundaries
+- Promise rejection handling
+- Logging service with different log levels
+- User-friendly error messages
+
+### Performance Optimizations
+
+- FPS limiting (60 FPS)
+- Efficient Canvas rendering
+- Asset preloading
+- Code splitting (vendor/app bundles)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Coding Standards
+
+- Follow ESLint rules
+- Write tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting PR
+
+## 📄 License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with ❤️ for educational purposes
+- Inspired by classic adventure games
+- Special thanks to all contributors
 
 ---
 
-Veel plezier met het verkennen van de wereld met je cavia! 🐹✨
+For more information or support, please open an issue on GitHub.
