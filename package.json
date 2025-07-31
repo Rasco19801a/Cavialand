@@ -1,0 +1,17 @@
+{
+  "name": "cavia-adventure-app",
+  "version": "1.0.0",
+  "description": "Cavia Avonturen Wereld - Een interactief spel waar je met je cavia verschillende werelden kunt verkennen!",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["game", "cavia", "guinea-pig", "adventure", "kids"],
+  "author": "Cavia Adventure Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
