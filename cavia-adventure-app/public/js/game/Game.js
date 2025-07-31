@@ -211,7 +211,7 @@ export default class Game {
         this.ctx.restore();
     }
     
-    start() {
+    async start() {
         // Initialize UI
         this.uiManager.initialize();
         
@@ -224,6 +224,9 @@ export default class Game {
         this.lastTime = performance.now();
         this.frameTime = 0;
         this.gameLoop(this.lastTime);
+        
+        // Return promise to indicate game is ready
+        return Promise.resolve();
     }
     
     stop() {

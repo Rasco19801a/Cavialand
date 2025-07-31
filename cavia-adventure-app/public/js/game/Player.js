@@ -15,9 +15,6 @@ export default class Player {
             nose: '#FF69B4'
         };
         
-        // Load saved colors if available
-        this.loadColors();
-        
         // Animation state
         this.animationFrame = 0;
         this.animationSpeed = 0.1;
@@ -101,23 +98,6 @@ export default class Player {
     setColor(part, color) {
         if (this.colors.hasOwnProperty(part)) {
             this.colors[part] = color;
-            this.saveColors();
-        }
-    }
-    
-    saveColors() {
-        localStorage.setItem('caviaColors', JSON.stringify(this.colors));
-    }
-    
-    loadColors() {
-        const saved = localStorage.getItem('caviaColors');
-        if (saved) {
-            try {
-                const colors = JSON.parse(saved);
-                Object.assign(this.colors, colors);
-            } catch (e) {
-                console.error('Failed to load saved colors:', e);
-            }
         }
     }
     
@@ -127,6 +107,15 @@ export default class Player {
         this.clearTarget();
         this.animationFrame = 0;
         this.isMoving = false;
+    }
+    
+    setPosition(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    getPosition() {
+        return { x: this.x, y: this.y };
     }
     
     getAnimationOffset() {
