@@ -15,7 +15,11 @@ export default class UIManager {
     
     createWorldButtons() {
         const worlds = this.game.worldManager.getWorlds();
-        this.worldSelector.innerHTML = '';
+        
+        // Clear existing buttons
+        while (this.worldSelector.firstChild) {
+            this.worldSelector.removeChild(this.worldSelector.firstChild);
+        }
         
         Object.entries(worlds).forEach(([key, world]) => {
             const button = document.createElement('button');
@@ -50,7 +54,10 @@ export default class UIManager {
         const colors = ['white', '#8B4513', '#2c2c2c', '#D2B48C', '#FFB6C1', '#FF69B4', '#FFA500', '#90EE90'];
         const parts = ['body', 'ears', 'belly', 'feet', 'nose'];
         
-        this.colorPicker.innerHTML = '';
+        // Clear existing content
+        while (this.colorPicker.firstChild) {
+            this.colorPicker.removeChild(this.colorPicker.firstChild);
+        }
         
         parts.forEach(part => {
             const partDiv = document.createElement('div');
