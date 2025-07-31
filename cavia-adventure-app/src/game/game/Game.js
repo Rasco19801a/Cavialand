@@ -34,6 +34,17 @@ export default class Game {
         // Performance monitoring
         this.lastTime = 0;
         this.fps = 0;
+        this.frameTime = 0;
+        this.targetFPS = 60;
+        this.targetFrameTime = 1000 / this.targetFPS;
+        
+        // Performance settings
+        this.enableFPSLimit = true;
+        this.showFPS = false;
+        
+        // Dirty rectangles for optimization
+        this.dirtyRegions = [];
+        this.fullRedraw = true;
     }
     
     resizeCanvas() {
@@ -155,6 +166,21 @@ export default class Game {
     gameLoop(currentTime) {
         // Calculate delta time
         const deltaTime = currentTime - this.lastTime;
+        
+        // FPS limiting
+        if (this.enableFPSLimit) {
+            this.frameTime += deltaTime;
+            
+            if (this.frameTime < this.targetFrameTime) {
+                // Skip frame to maintain target FPS
+                this.animationId = requestAnimationFrame((time) => this.gameLoop(time));
+                return;
+            }
+            
+            // Reset frame time, keeping remainder
+            this.frameTime = this.frameTime % this.targetFrameTime;
+        }
+        
         this.lastTime = currentTime;
         
         // Calculate FPS
@@ -166,17 +192,41 @@ export default class Game {
         // Render game
         this.render();
         
+        // Show FPS if enabled
+        if (this.showFPS) {
+            this.renderFPS();
+        }
+        
         // Continue loop
         this.animationId = requestAnimationFrame((time) => this.gameLoop(time));
     }
     
-    start() {
+    renderFPS() {
+        this.ctx.save();
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        this.ctx.fillRect(5, 5, 100, 25);
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = '14px Arial';
+        this.ctx.fillText(`FPS: ${Math.round(this.fps)}`, 10, 22);
+        this.ctx.restore();
+    }
+    
+    async start() {
         // Initialize UI
         this.uiManager.initialize();
         
+        // Setup performance monitoring
+        if (window.location.hash === '#debug') {
+            this.showFPS = true;
+        }
+        
         // Start game loop
         this.lastTime = performance.now();
+        this.frameTime = 0;
         this.gameLoop(this.lastTime);
+        
+        // Return promise to indicate game is ready
+        return Promise.resolve();
     }
     
     stop() {
